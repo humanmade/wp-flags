@@ -3,11 +3,16 @@
     "description": "Lightweight WordPress plugin to enable exposing feature flags to end-users, based on code-based ( or admin UI in the future ) criteria.",
     "type": "wordpress-plugin",
     "license": "MIT",
+    "minimum-stability":"dev"
     "authors": [
         {
             "name": "Shady Sharaf",
             "email": "shady@sharaf.me"
         }
     ],
+    "support": {
+        "issues": "https://github.com/humanmade/wp-flags/issues",
+        "source": "https://github.com/humanmade/wp-flags"
+    },
     "require": {}
 }
