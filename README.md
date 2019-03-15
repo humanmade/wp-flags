@@ -41,7 +41,6 @@ TBD
 
 Credits
 =======
-Created by Human Made for high volume and large-scale sites. We run S3 Uploads on sites with millions of monthly page views, and thousands of sites.
 
 Written and maintained by [Shady Sharaf](https://github.com/shadyvb). Thanks to all our [contributors](https://github.com/humanmade/wp-flags/graphs/contributors).
 
