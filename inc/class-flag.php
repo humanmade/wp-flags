@@ -65,6 +65,13 @@ class Flag {
 		if ( $options ) {
 			array_map( [ $this, 'set' ], array_keys( $options ), array_values( $options ) );
 		}
+
+		// Make sure to evaluate all callable values first time after init, or now if the flag is registered after
+		if ( did_action( 'init' ) ) {
+			$this->evaluate();
+		} else {
+			add_action( 'init', [ $this, 'evaluate' ], 1 );
+		}
 	}
 
 	/**
@@ -76,14 +83,8 @@ class Flag {
 	 * @return \HumanMade\Flags\Flag
 	 */
 	public function set( string $key, $value ) : Flag {
-		$keys = [
-			'available',
-			'active',
-			'optin',
-		];
-
-		if ( in_array( $key, $keys, true ) ) {
-			$this->{$key} = $this->evaluate( $value );
+		if ( property_exists( __CLASS__, $key ) ) {
+			$this->{$key} = $value;
 		} else {
 			$this->meta[ $key ] = $value;
 		}
@@ -103,20 +104,20 @@ class Flag {
 	 *
 	 * @return \HumanMade\Flags\Flag
 	 */
-	public function on( string $property, callable $callback, int $priority = 10 ) {
+	public function on( string $property, callable $callback, int $priority = 10 ) : Flag {
 		add_action( 'wp_flag_' . $this->id . '_change_' . $property, $callback, $priority, 2 );
 
 		return $this;
 	}
 
 	/**
-	 * Returns either the value if not callable, or the return of the callable otherwise
-	 *
-	 * @param $value
-	 *
-	 * @return mixed
+	 * Evaluate all callable arguments early on the `init` action
 	 */
-	public function evaluate( $value ) {
-		return is_callable( $value ) ? $value( $this ) : $value;
+	public function evaluate() : void {
+		foreach ( get_object_vars( $this ) as $key => $value ) {
+			if ( is_callable( $value ) ) {
+				$this->{$key} = call_user_func( $value, $this );
+			}
+		}
 	}
 }

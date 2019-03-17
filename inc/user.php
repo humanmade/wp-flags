@@ -9,7 +9,7 @@ use HumanMade\Flags\Flags;
  * Bootstrap the feature
  */
 function bootstrap() {
-	add_action( 'set_current_user', __NAMESPACE__ . '\hook', 1 );
+	add_action( 'init', __NAMESPACE__ . '\hook', 2 );
 }
 
 /**
