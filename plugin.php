@@ -21,8 +21,8 @@
 
 namespace HumanMade\Flags;
 
-require_once __DIR__ . '/classes/class-flag.php';
-require_once __DIR__ . '/classes/class-flags.php';
+require_once __DIR__ . '/inc/class-flag.php';
+require_once __DIR__ . '/inc/class-flags.php';
 
 require_once __DIR__ . '/inc/admin-bar.php';
 require_once __DIR__ . '/inc/ajax.php';
