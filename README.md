@@ -37,7 +37,37 @@ Installation
 Usage
 ==========
 
-TBD
+```$php
+use HumanMade\Flags\Flags;
+
+add_action( 'init', function() {
+    Flags::add( 'new-flag', 'New Flag', [
+        // Is the flag exposed to users ?
+        'available' => function() {
+            return current_user_can( 'manage_options' );
+        },
+        // Default flag status
+        'active' => true,
+        // Is the flag controllable by users ?
+        'optin' => true,
+        // Custom icon ? ( dashicon-compatible )
+        'icon' => 'dashboard',
+        // Custom attribute ?
+        'some_custom_meta_key' => 'some_value',
+    ] );
+
+    // OR just..
+    $flag = Flags::add( 'another-flag', 'Another flag' );
+    $flag->on( 'active', function( $active, $flag ) {
+        // do something based on active status change
+    } );
+
+    // Execute logic based on flag status
+    if ( Flags::get( 'new-flag' )->active ) {
+        show_the_new_sidebar();
+    } );
+} );
+```
 
 Credits
 =======
