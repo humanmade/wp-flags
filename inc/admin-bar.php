@@ -68,10 +68,10 @@ function render() {
  * @return bool
  */
 function add_flag_node( Flag $flag ) {
-	$href  = $flag->optin ? ( $flag->href ?? get_toggle_url( $flag ) ) : null;
-	$title = $flag->title;
-	$icon  = $flag->meta['icon'] ?? 'flag';
-	$title = sprintf( '<span class="dashicons dashicons-%s"></span>', sanitize_html_class( $icon ) ) . $title;
+	$href      = $flag->optin ? ( $flag->href ?? get_toggle_url( $flag ) ) : null;
+	$title     = $flag->title;
+	$icon      = $flag->meta['icon'] ?? 'flag';
+	$pre_title = sprintf( '<span class="dashicons dashicons-%s"></span>', sanitize_html_class( $icon ) );
 
 	if ( ! $flag->optin ) {
 		$title .= '<span class="dashicons dashicons-lock right"></span>';
@@ -82,10 +82,10 @@ function add_flag_node( Flag $flag ) {
 	$wp_admin_bar->add_menu( [
 		'id'     => 'flags-' . esc_attr( $flag->id ),
 		'parent' => 'flags',
-		'title'  => esc_html( apply_filters( 'wp_flag_ab_title', $title, $flag ) ),
+		'title'  => $pre_title . esc_html( apply_filters( 'wp_flag_ab_title', $title, $flag ) ),
 		'href'   => esc_url_raw( apply_filters( 'wp_flag_ab_href', $href, $flag ) ),
 		'meta'   => [
-			'class' => sanitize_html_class( apply_filters( 'wp_flag_ab_class', sprintf( 'optin-%s active-%s', (int) $flag->optin, (int) $flag->active ) ) ),
+			'class' => esc_attr( apply_filters( 'wp_flag_ab_class', sprintf( 'optin-%s active-%s', (int) $flag->optin, (int) $flag->active ) ) ),
 		],
 	] );
 
