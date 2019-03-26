@@ -21,8 +21,8 @@ function bootstrap() {
  * @param \WP_User $user
  */
 function render( \WP_User $user ) {
-	$flags = wp_list_filter( Flags::get_all(), [ 'available' => true ] );
-	$values = call_user_func_array( 'array_merge', array_map( function( $flag ) use ( $user ) {
+	$flags  = wp_list_filter( Flags::get_all(), [ 'available' => true ] );
+	$values = call_user_func_array( 'array_merge', array_map( function ( $flag ) use ( $user ) {
 		return [ $flag->id => get_user_meta( $user->ID, get_flag_meta_key( $flag ), true ) === 'active' ];
 	}, $flags ) );
 	?>
@@ -37,8 +37,8 @@ function render( \WP_User $user ) {
 						<input type="checkbox" name="wp-flags[<?php echo esc_attr( $flag->id ); ?>]"
 						       id="wp-flags-<?php echo esc_attr( $flag->id ); ?>"
 						       value="1"
-						       <?php checked( true, $values[ $flag->id ] ?? false ); ?>
-						       <?php disabled( false, $flag->optin ); ?>
+							<?php checked( true, $values[ $flag->id ] ?? false ); ?>
+							<?php disabled( false, $flag->optin ); ?>
 						/>
 						<?php echo esc_html( $flag->title ); ?>
 					</label>
@@ -63,12 +63,11 @@ function save( int $user_id ) {
 		return false;
 	}
 
+	if ( ! current_user_can( 'edit_user', $user_id ) ) {
+		return false;
+	}
 
-    if ( ! current_user_can( 'edit_user', $user_id ) ) {
-        return false;
-    }
-
-    $flags = wp_list_filter( Flags::get_all(), [ 'available' => true ] );
+	$flags  = wp_list_filter( Flags::get_all(), [ 'available' => true ] );
 	$values = filter_input( INPUT_POST, 'wp-flags', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 	foreach ( $flags as $flag ) {
 		$value = isset( $values[ $flag->id ] ) ? 'active' : 'inactive';
