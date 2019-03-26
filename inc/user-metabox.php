@@ -2,9 +2,8 @@
 
 namespace HumanMade\Flags\UserMetabox;
 
-use HumanMade\Flags\Flags;
-
 use function HumanMade\Flags\User\get_flag_meta_key;
+use HumanMade\Flags\Flags;
 
 /**
  * Bootstrap the feature
