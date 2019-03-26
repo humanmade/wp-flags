@@ -33,6 +33,7 @@ function handle_endpoint() {
 		}
 
 		wp_safe_redirect( $redirect );
+		exit;
 	} else {
 		if ( isset( $e ) ) {
 			wp_send_json_error( $e->getMessage() );
