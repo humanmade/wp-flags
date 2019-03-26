@@ -9,7 +9,7 @@
  *
  * Plugin Name:  Flags
  * Description:  Feature flag management for WordPress
- * Version:      0.0.1
+ * Version:      0.0.3
  * Plugin URI:   https://github.com/humanmade/wp-flags
  * Author:       Human Made
  * Author URI:   https://github.com/humanmade/wp-flags/graphs/contributors
