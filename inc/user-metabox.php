@@ -3,6 +3,7 @@
 namespace HumanMade\Flags\UserMetabox;
 
 use HumanMade\Flags\Flags;
+
 use function HumanMade\Flags\User\get_flag_meta_key;
 
 /**
@@ -34,9 +35,11 @@ function render( \WP_User $user ) {
 			<td>
 				<?php foreach ( $flags as $flag ) : ?>
 					<label for="wp-flags-<?php echo esc_attr( $flag->id ); ?>">
-						<input type="checkbox" name="wp-flags[<?php echo esc_attr( $flag->id ); ?>]"
-						       id="wp-flags-<?php echo esc_attr( $flag->id ); ?>"
-						       value="1"
+						<input
+							type="checkbox"
+							name="wp-flags[<?php echo esc_attr( $flag->id ); ?>]"
+							id="wp-flags-<?php echo esc_attr( $flag->id ); ?>"
+							value="1"
 							<?php checked( true, $values[ $flag->id ] ?? false ); ?>
 							<?php disabled( false, $flag->optin ); ?>
 						/>
