@@ -29,7 +29,7 @@ function render( \WP_User $user ) {
 	<table class="form-table">
 		<tr>
 			<th>
-				<h3><?php esc_html_e( 'Flags', 'siemens' ); ?></h3>
+				<h3><?php esc_html_e( 'Flags', 'wp-flags' ); ?></h3>
 			</th>
 			<td>
 				<?php foreach ( $flags as $flag ) : ?>
