@@ -6,7 +6,6 @@ use HumanMade\Flags\Flag;
 use HumanMade\Flags\Flags;
 use HumanMade\Flags\User;
 
-
 function bootstrap() {
 	add_action( 'init', __NAMESPACE__ . '\\hook', 2 );
 }
@@ -29,7 +28,7 @@ function hook() {
  */
 function handle( Flag $flag ) {
 	// check Flag scope
-	if ( $flag->scope !== 'site') {
+	if ( $flag->scope !== 'site' ) {
 		return;
 	}
 

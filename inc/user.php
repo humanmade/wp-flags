@@ -30,7 +30,7 @@ function hook() {
  */
 function handle( Flag $flag ) {
 	// check Flag scope
-	if ( $flag->scope !== 'user') {
+	if ( $flag->scope !== 'user' ) {
 		return;
 	}
 
