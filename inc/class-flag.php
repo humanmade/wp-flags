@@ -45,6 +45,14 @@ class Flag {
 	public $active = false;
 
 	/**
+	 * Set the flag scope sitewide or on user level (`user`|`site`)
+	 *
+	 *
+	 * @var string
+	 */
+	public $scope = 'user';
+
+	/**
 	 * Placeholder for additional meta values
 	 *
 	 * @var array

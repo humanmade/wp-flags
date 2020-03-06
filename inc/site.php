@@ -1,15 +1,14 @@
 <?php
 
-namespace HumanMade\Flags\User;
+namespace HumanMade\Flags\Site;
 
 use HumanMade\Flags\Flag;
 use HumanMade\Flags\Flags;
+use HumanMade\Flags\User;
 
-/**
- * Bootstrap the feature
- */
+
 function bootstrap() {
-	add_action( 'init', __NAMESPACE__ . '\hook', 2 );
+	add_action( 'init', __NAMESPACE__ . '\\hook', 2 );
 }
 
 /**
@@ -17,10 +16,10 @@ function bootstrap() {
  */
 function hook() {
 	// Go through all registered
-	array_map( __NAMESPACE__ . '\handle', Flags::get_all() );
+	array_map( __NAMESPACE__ . '\\handle', Flags::get_all() );
 
 	// Hook to any newly registered flag after this point
-	add_action( 'wp_flag_added', __NAMESPACE__ . '\handle', 1 );
+	add_action( 'wp_flag_added', __NAMESPACE__ . '\\handle', 1 );
 }
 
 /**
@@ -30,29 +29,18 @@ function hook() {
  */
 function handle( Flag $flag ) {
 	// check Flag scope
-	if ( $flag->scope !== 'user') {
+	if ( $flag->scope !== 'site') {
 		return;
 	}
 
 	// Get user preference, if any, to set current status of the flag
-	$value = get_user_meta( get_current_user_id(), get_flag_meta_key( $flag ), true );
+	$value = get_option( User\get_flag_meta_key( $flag ), true, '' );
 	if ( $value ) {
 		$flag->set( 'active', $value === 'active' );
 	}
 
 	// Hook to any save operation afterwards
-	$flag->on( 'active', __NAMESPACE__ . '\save' );
-}
-
-/**
- * Return meta key for the flag
- *
- * @param \HumanMade\Flags\Flag $flag
- *
- * @return string
- */
-function get_flag_meta_key( Flag $flag ) : string {
-	return sprintf( '_wp_flag_%s', $flag->id );
+	$flag->on( 'active', __NAMESPACE__ . '\\save' );
 }
 
 /**
@@ -64,5 +52,5 @@ function get_flag_meta_key( Flag $flag ) : string {
  * @return bool|int
  */
 function save( bool $value, Flag $flag ) {
-	return update_user_meta( get_current_user_id(), get_flag_meta_key( $flag ), $value ? 'active' : 'inactive' );
+	return update_option( User\get_flag_meta_key( $flag ), $value ? 'active' : 'inactive' );
 }
