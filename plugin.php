@@ -29,6 +29,7 @@ require_once __DIR__ . '/inc/ajax.php';
 require_once __DIR__ . '/inc/user.php';
 require_once __DIR__ . '/inc/user-metabox.php';
 require_once __DIR__ . '/inc/site.php';
+require_once __DIR__ . '/inc/site-metabox.php';
 require_once __DIR__ . '/inc/namespace.php';
 
 bootstrap();

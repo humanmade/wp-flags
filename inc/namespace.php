@@ -9,6 +9,7 @@ function bootstrap() : void {
 	User\bootstrap();
 	UserMetabox\bootstrap();
 	Site\bootstrap();
+	SiteMetabox\bootstrap();
 
 	if ( apply_filters( 'wp_flags_enable_admin_bar', true ) ) {
 		AdminBar\bootstrap();
