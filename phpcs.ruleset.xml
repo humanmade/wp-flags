@@ -10,9 +10,6 @@
     <rule ref="vendor/humanmade/coding-standards">
         <!-- Don't restrict namespaced functions to `namespace.php` -->
         <exclude name="HM.Files.FunctionFileName" />
-
-        <!-- Temporary: Exclude commented out code sniff, as it leads to false positives. -->
-        <exclude name="Squiz.PHP.CommentedOutCode" />
     </rule>
 
     <exclude-pattern>*/node_modules/*</exclude-pattern>
