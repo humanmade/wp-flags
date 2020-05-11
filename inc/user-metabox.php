@@ -20,7 +20,13 @@ function bootstrap() {
  * @param \WP_User $user
  */
 function render( \WP_User $user ) {
-	$flags  = wp_list_filter( Flags::get_all(), [ 'available' => true, 'scope' => 'user' ] );
+	$flags = wp_list_filter(
+		Flags::get_all(),
+		[
+			'available' => true,
+			'scope' => 'user',
+		]
+	);
 	$values = call_user_func_array( 'array_merge', array_map( function ( $flag ) use ( $user ) {
 		/* @var \HumanMade\Flags\Flag $flag */
 		return [ $flag->id => get_user_meta( $user->ID, $flag->get_meta_key(), true ) === 'active' ];

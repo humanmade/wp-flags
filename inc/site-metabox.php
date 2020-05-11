@@ -105,7 +105,7 @@ function get_all_site_flags() : array {
 		Flags::get_all(),
 		[
 			'available' => true,
-			'scope' => 'site'
+			'scope' => 'site',
 		]
 	);
 }
