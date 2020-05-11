@@ -47,7 +47,6 @@ class Flag {
 	/**
 	 * Set the flag scope sitewide or on user level (`user`|`site`)
 	 *
-	 *
 	 * @var string
 	 */
 	public $scope = 'user';

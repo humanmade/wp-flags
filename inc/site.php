@@ -4,7 +4,6 @@ namespace HumanMade\Flags\Site;
 
 use HumanMade\Flags\Flag;
 use HumanMade\Flags\Flags;
-use HumanMade\Flags\User;
 
 function bootstrap() {
 	add_action( 'init', __NAMESPACE__ . '\\hook', 2 );
@@ -22,7 +21,7 @@ function hook() {
 }
 
 /**
- * Retrieve user preference from meta, then register the callback
+ * Retrieve site preference from meta, then register the callback
  *
  * @param \HumanMade\Flags\Flag $flag
  */
@@ -32,7 +31,7 @@ function handle( Flag $flag ) {
 		return;
 	}
 
-	// Get user preference, if any, to set current status of the flag
+	// Get site preference, if any, to set current status of the flag
 	$value = get_option( $flag->get_meta_key(), true, '' );
 	if ( $value ) {
 		$flag->set( 'active', $value === 'active' );
@@ -43,7 +42,7 @@ function handle( Flag $flag ) {
 }
 
 /**
- * Toggle the user flag status
+ * Toggle the site flag status
  *
  * @param bool                  $value
  * @param \HumanMade\Flags\Flag $flag
