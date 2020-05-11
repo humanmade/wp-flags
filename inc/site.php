@@ -1,4 +1,9 @@
 <?php
+/**
+ * Handling of site-handled flags.
+ *
+ * @package HumanMade\WpFlags
+ */
 
 namespace HumanMade\Flags\Site;
 
