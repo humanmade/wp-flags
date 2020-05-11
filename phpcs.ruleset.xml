@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <ruleset>
 
-    <config name="installed_paths" value="vendor/humanmade/coding-standards,vendor/wp-coding-standards/wpcs,vendor/fig-r/psr2r-sniffer" />
-
     <arg value="sv"/>
     <arg name="extensions" value="php"/>
     <arg name="basepath" value="."/>
