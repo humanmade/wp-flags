@@ -33,7 +33,7 @@ function handle( Flag $flag ) {
 	}
 
 	// Get user preference, if any, to set current status of the flag
-	$value = get_option( User\get_flag_meta_key( $flag ), true, '' );
+	$value = get_option( $flag->get_meta_key(), true, '' );
 	if ( $value ) {
 		$flag->set( 'active', $value === 'active' );
 	}
@@ -51,5 +51,5 @@ function handle( Flag $flag ) {
  * @return bool|int
  */
 function save( bool $value, Flag $flag ) {
-	return update_option( User\get_flag_meta_key( $flag ), $value ? 'active' : 'inactive' );
+	return update_option( $flag->get_meta_key(), $value ? 'active' : 'inactive' );
 }

@@ -119,6 +119,13 @@ class Flag {
 	}
 
 	/**
+	 * Get the meta key used for our flag.
+	 */
+	public function get_meta_key() : string {
+		return sprintf( '_wp_flag_%s', $this->id );
+	}
+
+	/**
 	 * Evaluate all callable arguments early on the `init` action
 	 */
 	public function evaluate() : void {

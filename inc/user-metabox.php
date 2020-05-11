@@ -2,7 +2,6 @@
 
 namespace HumanMade\Flags\UserMetabox;
 
-use function HumanMade\Flags\User\get_flag_meta_key;
 use HumanMade\Flags\Flags;
 
 /**
@@ -23,7 +22,8 @@ function bootstrap() {
 function render( \WP_User $user ) {
 	$flags  = wp_list_filter( Flags::get_all(), [ 'available' => true ] );
 	$values = call_user_func_array( 'array_merge', array_map( function ( $flag ) use ( $user ) {
-		return [ $flag->id => get_user_meta( $user->ID, get_flag_meta_key( $flag ), true ) === 'active' ];
+		/* @var \HumanMade\Flags\Flag $flag */
+		return [ $flag->id => get_user_meta( $user->ID, $flag->get_meta_key(), true ) === 'active' ];
 	}, $flags ) );
 	?>
 	<table class="form-table">
@@ -73,7 +73,7 @@ function save( int $user_id ) {
 	$values = filter_input( INPUT_POST, 'wp-flags', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 	foreach ( $flags as $flag ) {
 		$value = isset( $values[ $flag->id ] ) ? 'active' : 'inactive';
-		update_user_meta( $user_id, get_flag_meta_key( $flag ), $value );
+		update_user_meta( $user_id, $flag->get_meta_key(), $value );
 	}
 
 	return true;
