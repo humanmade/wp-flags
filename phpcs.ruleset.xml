@@ -17,6 +17,9 @@
         <exclude name="Squiz.PHP.CommentedOutCode" />
     </rule>
 
+    <!-- Require proper docblocks be used in all PHP files -->
+    <rule ref="WordPress-Docs" />
+
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/tests/*</exclude-pattern>
