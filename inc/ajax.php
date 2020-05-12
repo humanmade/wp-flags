@@ -104,7 +104,7 @@ function admin_notice() {
 		return;
 	}
 
-	printf( '<div class="%s"><p>%s</p></div>', 'notice notice-error is-dissmissible', esc_html( $error ) );
+	printf( '<div class="%s"><p>%s</p></div>', 'notice notice-error is-dismissible', esc_html( $error ) );
 }
 
 /**
