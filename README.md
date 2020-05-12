@@ -46,6 +46,8 @@ add_action( 'init', function() {
         'available' => function() {
             return current_user_can( 'manage_options' );
         },
+        // At what level the flag can be set. One of `user` or `site`
+        'scope' => 'user',
         // Default flag status
         'active' => true,
         // Is the flag controllable by users ?
