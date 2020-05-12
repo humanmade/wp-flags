@@ -1,4 +1,9 @@
 <?php
+/**
+ * AJAX handling for updating the flags from the admin bar.
+ *
+ * @package HumanMade\WpFlags
+ */
 
 namespace HumanMade\Flags\Ajax;
 
@@ -16,8 +21,6 @@ function bootstrap() {
 
 /**
  * Handle the AJAX endpoint
- *
- * @throws \Exception
  */
 function handle_endpoint() {
 	$redirect = filter_input( INPUT_GET, 'redirect' );
@@ -25,6 +28,7 @@ function handle_endpoint() {
 	try {
 		handle_change();
 	} catch ( \Exception $e ) {
+		error_log( $e->getMessage() );
 	}
 
 	if ( $redirect ) {
@@ -44,9 +48,9 @@ function handle_endpoint() {
 }
 
 /**
- * Handle changing the user meta
+ * Handle changing the a flag's status.
  *
- * @throws \Exception
+ * @throws \Exception Notice that a flag was toggled and should not have been.
  */
 function handle_change() {
 	if ( ! wp_verify_nonce( filter_input( INPUT_GET, 'nonce' ), 'wp_flags' ) ) {
@@ -73,7 +77,7 @@ function handle_change() {
 /**
  * Return the AJAX endpoint to switch flag status
  *
- * @param \HumanMade\Flags\Flag $flag
+ * @param \HumanMade\Flags\Flag $flag Current flag.
  *
  * @return string
  */
@@ -100,13 +104,13 @@ function admin_notice() {
 		return;
 	}
 
-	printf( '<div class="%s"><p>%s</p></div>', 'notice notice-error is-dismissible', $error );
+	printf( '<div class="%s"><p>%s</p></div>', 'notice notice-error is-dismissible', esc_html( $error ) );
 }
 
 /**
- * Mark the wp_flags_error as a single use query arg for WordPress
+ * Mark the wp_flags_error as a single use query arg for WordPress.
  *
- * @param $args
+ * @param array $args Arguments which can be removed from a URL string.
  *
  * @return array
  */

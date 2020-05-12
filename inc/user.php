@@ -1,4 +1,9 @@
 <?php
+/**
+ * User flag handling.
+ *
+ * @package HumanMade\WpFlags
+ */
 
 namespace HumanMade\Flags\User;
 
@@ -16,26 +21,26 @@ function bootstrap() {
  * Setup all after we know who's logged in
  */
 function hook() {
-	// Go through all registered
+	// Go through all registered.
 	array_map( __NAMESPACE__ . '\handle', Flags::get_all() );
 
-	// Hook to any newly registered flag after this point
+	// Hook to any newly registered flag after this point.
 	add_action( 'wp_flag_added', __NAMESPACE__ . '\handle', 1 );
 }
 
 /**
  * Retrieve user preference from meta, then register the callback
  *
- * @param \HumanMade\Flags\Flag $flag
+ * @param \HumanMade\Flags\Flag $flag Flag to evaluate.
  */
 function handle( Flag $flag ) {
-	// Get user preference, if any, to set current status of the flag
+	// Get user preference, if any, to set current status of the flag.
 	$value = get_user_meta( get_current_user_id(), get_flag_meta_key( $flag ), true );
 	if ( $value ) {
 		$flag->set( 'active', $value === 'active' );
 	}
 
-	// Hook to any save operation afterwards
+	// Hook to any save operation afterwards.
 	$flag->on( 'active', __NAMESPACE__ . '\save' );
 }
 
@@ -53,8 +58,8 @@ function get_flag_meta_key( Flag $flag ) : string {
 /**
  * Toggle the user flag status
  *
- * @param bool                  $value
- * @param \HumanMade\Flags\Flag $flag
+ * @param bool                  $value Enable or disable the flag.
+ * @param \HumanMade\Flags\Flag $flag  Flag being saved.
  *
  * @return bool|int
  */

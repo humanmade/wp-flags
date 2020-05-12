@@ -1,4 +1,9 @@
 <?php
+/**
+ * Admin bar UI for toggling flags on or off.
+ *
+ * @package HumanMade\WpFlags
+ */
 
 namespace HumanMade\Flags\AdminBar;
 
@@ -11,7 +16,7 @@ use HumanMade\Flags\Flags;
  */
 function bootstrap() : void {
 	add_action( 'admin_bar_init', function() {
-		// Only display the admin bar entry if at least one Flag is available
+		// Only display the admin bar entry if at least one Flag is available.
 		if ( empty( wp_list_filter( Flags::get_all(), [ 'available' => true ] ) ) ) {
 			return;
 		}
@@ -50,7 +55,7 @@ function enqueue_styles() {
  * Render admin bar entries
  */
 function render() {
-	/** @var $wp_admin_bar \WP_Admin_Bar */
+	/* @var $wp_admin_bar \WP_Admin_Bar Admin bar class */
 	global $wp_admin_bar;
 	$wp_admin_bar->add_menu( [
 		'id'    => 'flags',
@@ -63,7 +68,7 @@ function render() {
 /**
  * Add a flag to the admin bar
  *
- * @param \HumanMade\Flags\Flag $flag
+ * @param \HumanMade\Flags\Flag $flag Current flag.
  *
  * @return bool
  */
@@ -77,7 +82,7 @@ function add_flag_node( Flag $flag ) {
 		$title .= '<span class="dashicons dashicons-lock right"></span>';
 	}
 
-	/** @var $wp_admin_bar \WP_Admin_Bar */
+	/* @var $wp_admin_bar \WP_Admin_Bar Admin bar class */
 	global $wp_admin_bar;
 	$wp_admin_bar->add_menu( [
 		'id'     => 'flags-' . esc_attr( $flag->id ),
