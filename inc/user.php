@@ -34,25 +34,19 @@ function hook() {
  * @param \HumanMade\Flags\Flag $flag Flag to evaluate.
  */
 function handle( Flag $flag ) {
+	// Check Flag scope.
+	if ( $flag->scope !== 'user' ) {
+		return;
+	}
+
 	// Get user preference, if any, to set current status of the flag.
-	$value = get_user_meta( get_current_user_id(), get_flag_meta_key( $flag ), true );
+	$value = get_user_meta( get_current_user_id(), $flag->get_meta_key(), true );
 	if ( $value ) {
 		$flag->set( 'active', $value === 'active' );
 	}
 
 	// Hook to any save operation afterwards.
 	$flag->on( 'active', __NAMESPACE__ . '\save' );
-}
-
-/**
- * Return meta key for the flag
- *
- * @param \HumanMade\Flags\Flag $flag
- *
- * @return string
- */
-function get_flag_meta_key( Flag $flag ) : string {
-	return sprintf( '_wp_flag_%s', $flag->id );
 }
 
 /**
@@ -64,5 +58,5 @@ function get_flag_meta_key( Flag $flag ) : string {
  * @return bool|int
  */
 function save( bool $value, Flag $flag ) {
-	return update_user_meta( get_current_user_id(), get_flag_meta_key( $flag ), $value ? 'active' : 'inactive' );
+	return update_user_meta( get_current_user_id(), $flag->get_meta_key(), $value ? 'active' : 'inactive' );
 }

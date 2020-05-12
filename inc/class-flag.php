@@ -50,6 +50,13 @@ class Flag {
 	public $active = false;
 
 	/**
+	 * Set the flag scope sitewide or on user level (`user`|`site`)
+	 *
+	 * @var string
+	 */
+	public $scope = 'user';
+
+	/**
 	 * Placeholder for additional meta values
 	 *
 	 * @var array
@@ -118,6 +125,13 @@ class Flag {
 		add_action( 'wp_flag_' . $this->id . '_change_' . $property, $callback, $priority, 2 );
 
 		return $this;
+	}
+
+	/**
+	 * Get the meta key used for our flag.
+	 */
+	public function get_meta_key() : string {
+		return sprintf( '_wp_flag_%s', $this->id );
 	}
 
 	/**
