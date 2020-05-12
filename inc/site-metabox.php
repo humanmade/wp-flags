@@ -28,7 +28,7 @@ function register_settings() {
 		'general'
 	);
 
-	// Add UA code.
+	// Add site-wide option to enable/disable all flags.
 	add_settings_field(
 		'wp-flags',
 		esc_html__( 'Enable Flags', 'wp-flags' ),
