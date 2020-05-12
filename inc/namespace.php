@@ -1,4 +1,9 @@
 <?php
+/**
+ * Setup for our plugin.
+ *
+ * @package HumanMade\WpFlags
+ */
 
 namespace HumanMade\Flags;
 

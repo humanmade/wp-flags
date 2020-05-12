@@ -1,4 +1,9 @@
 <?php
+/**
+ * Handler for single flag properties.
+ *
+ * @package HumanMade\WpFlags
+ */
 
 namespace HumanMade\Flags;
 
@@ -61,9 +66,14 @@ class Flag {
 	/**
 	 * Flag constructor.
 	 *
-	 * @param string $id
-	 * @param string $title
-	 * @param array  $options
+	 * @param string $id      Slug used for the flag.
+	 * @param string $title   Proper display name for the flag.
+	 * @param array  $options Options available to the flag.
+	 *     @type callback $available Is the flag exposed to users?
+	 *     @type callback $active    Default flag status
+	 *     @type callback $optin     Is the flag controllable by users?
+	 *     @type callback $icon      Custom icon? (dashicon-compatible)
+	 *     Optional extra parameters.
 	 */
 	public function __construct( string $id, string $title, array $options = [] ) {
 		$this->id    = $id;
@@ -73,7 +83,7 @@ class Flag {
 			array_map( [ $this, 'set' ], array_keys( $options ), array_values( $options ) );
 		}
 
-		// Make sure to evaluate all callable values first time after init, or now if the flag is registered after
+		// Make sure to evaluate all callable values first time after init, or now if the flag is registered after.
 		if ( did_action( 'init' ) ) {
 			$this->evaluate();
 		} else {
@@ -84,8 +94,8 @@ class Flag {
 	/**
 	 * Set an option
 	 *
-	 * @param $key
-	 * @param $value
+	 * @param string $key   type of value being changed.
+	 * @param string $value Value of the change.
 	 *
 	 * @return \HumanMade\Flags\Flag
 	 */
@@ -105,9 +115,9 @@ class Flag {
 	/**
 	 * Hook an action on updating a flag property
 	 *
-	 * @param string   $property
-	 * @param callable $callback
-	 * @param int      $priority
+	 * @param string   $property Property being changed.
+	 * @param callable $callback Function to call when the flag is updated.
+	 * @param int      $priority Priority in which to run this hook.
 	 *
 	 * @return \HumanMade\Flags\Flag
 	 */

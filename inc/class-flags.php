@@ -1,4 +1,9 @@
 <?php
+/**
+ * Single entry point for all flags.
+ *
+ * @package HumanMade\WpFlags
+ */
 
 namespace HumanMade\Flags;
 
@@ -12,6 +17,8 @@ namespace HumanMade\Flags;
 class Flags {
 
 	/**
+	 * Flags which have been registered.
+	 *
 	 * @var Flag[]
 	 */
 	private static $flags = [];
@@ -25,10 +32,9 @@ class Flags {
 	/**
 	 * Add a new flag object
 	 *
-	 * @param string $id
-	 *
-	 * @param string $title
-	 * @param array  $options
+	 * @param string $id      Slug of the flag to use.
+	 * @param string $title   Proper name of the flag.
+	 * @param array  $options Options to assign to the flag. Further documented in the Flag class.
 	 *
 	 * @return \HumanMade\Flags\Flag
 	 */
@@ -43,10 +49,10 @@ class Flags {
 	/**
 	 * Get a flag object by id
 	 *
-	 * @param string $id
+	 * @param string $id ID of the flag to fetch.
 	 *
 	 * @return \HumanMade\Flags\Flag
-	 * @throws \Exception
+	 * @throws \Exception Notice that a flag is unregistered.
 	 */
 	static function get( string $id ) : Flag {
 		if ( ! isset( self::$flags[ $id ] ) ) {
