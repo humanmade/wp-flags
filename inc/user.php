@@ -34,12 +34,12 @@ function hook() {
  * @param \HumanMade\Flags\Flag $flag Flag to evaluate.
  */
 function handle( Flag $flag ) {
-	// check Flag scope
+	// Check Flag scope.
 	if ( $flag->scope !== 'user' ) {
 		return;
 	}
 
-	// Get user preference, if any, to set current status of the flag
+	// Get user preference, if any, to set current status of the flag.
 	$value = get_user_meta( get_current_user_id(), $flag->get_meta_key(), true );
 	if ( $value ) {
 		$flag->set( 'active', $value === 'active' );

@@ -31,10 +31,10 @@ function hook() {
 /**
  * Retrieve site preference from meta, then register the callback.
  *
- * @param \HumanMade\Flags\Flag $flag
+ * @param \HumanMade\Flags\Flag $flag Flag to evaluate.
  */
 function handle( Flag $flag ) {
-	// check Flag scope
+	// check Flag scope.
 	if ( $flag->scope !== 'site' ) {
 		return;
 	}
@@ -45,15 +45,15 @@ function handle( Flag $flag ) {
 		$flag->set( 'active', $value === 'active' );
 	}
 
-	// Hook to any save operation afterwards
+	// Hook to any save operation afterwards.
 	$flag->on( 'active', __NAMESPACE__ . '\\save' );
 }
 
 /**
  * Toggle the site flag status.
  *
- * @param bool                  $value
- * @param \HumanMade\Flags\Flag $flag
+ * @param bool                  $value Enable or disable the flag.
+ * @param \HumanMade\Flags\Flag $flag  Flag being saved.
  *
  * @return bool|int
  */
