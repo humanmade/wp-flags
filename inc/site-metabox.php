@@ -20,7 +20,7 @@ function bootstrap() {
  * Register our fieldgroup and setting with WordPress.
  */
 function register_settings() {
-	// Add a new setting group for localization in General Options.
+	// Add a new setting group for site-wide flags in General Options.
 	add_settings_section(
 		'wp_flags',
 		esc_html__( 'Flags', 'wp-flags' ),
