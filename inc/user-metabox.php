@@ -1,4 +1,9 @@
 <?php
+/**
+ * UI for turning flags on or off for a given user.
+ *
+ * @package HumanMade\WpFlags
+ */
 
 namespace HumanMade\Flags\UserMetabox;
 
@@ -18,7 +23,7 @@ function bootstrap() {
 /**
  * Render user profile metabox
  *
- * @param \WP_User $user
+ * @param \WP_User $user User whose profile is being edited.
  */
 function render( \WP_User $user ) {
 	$flags  = wp_list_filter( Flags::get_all(), [ 'available' => true ] );
@@ -56,7 +61,7 @@ function render( \WP_User $user ) {
 /**
  * Save user flag preferences
  *
- * @param int $user_id
+ * @param int $user_id ID of the user whose profile is being saved.
  *
  * @return bool
  */
