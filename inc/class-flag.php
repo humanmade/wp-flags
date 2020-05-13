@@ -70,9 +70,10 @@ class Flag {
 	 * @param string $title   Proper display name for the flag.
 	 * @param array  $options Options available to the flag.
 	 *     @type callback $available Is the flag exposed to users?
-	 *     @type callback $active    Default flag status
-	 *     @type callback $optin     Is the flag controllable by users?
-	 *     @type callback $icon      Custom icon? (dashicon-compatible)
+	 *     @type string   $scope     At what level the flag can be set. One of `user` or `site`.
+	 *     @type bool     $active    Default flag status
+	 *     @type bool     $optin     Is the flag controllable by users?
+	 *     @type string   $icon      Custom icon? (dashicon-compatible)
 	 *     Optional extra parameters.
 	 */
 	public function __construct( string $id, string $title, array $options = [] ) {

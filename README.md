@@ -46,6 +46,8 @@ add_action( 'init', function() {
         'available' => function() {
             return current_user_can( 'manage_options' );
         },
+        // At what level the flag can be set. One of `user` or `site`
+        'scope' => 'user',
         // Default flag status
         'active' => true,
         // Is the flag controllable by users ?
@@ -68,6 +70,11 @@ add_action( 'init', function() {
     } );
 } );
 ```
+
+Scope of Setting a Flag
+==========
+
+A flag can be set at either the `user` or `site` scope, which determines how a flag is controlled. A `user`-scoped flag can be turned on or off by each user for that user only on a site, whereas a `site`-scoped flag is turned on or off for every user and is controlled in the site settings. 
 
 Credits
 =======
