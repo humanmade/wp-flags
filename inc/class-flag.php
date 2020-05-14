@@ -129,9 +129,9 @@ class Flag {
 	}
 
 	/**
-	 * Get the meta key used for our flag.
+	 * Get the underlying storage object (meta or option) key used for our flag.
 	 */
-	public function get_meta_key() : string {
+	public function get_storage_key() : string {
 		return sprintf( '_wp_flag_%s', $this->id );
 	}
 

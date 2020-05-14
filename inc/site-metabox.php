@@ -41,7 +41,7 @@ function register_settings() {
 	foreach ( get_all_site_flags() as $flag ) {
 		register_setting(
 			'general',
-			$flag->get_meta_key(),
+			$flag->get_storage_key(),
 			[
 				'sanitize_callback' => __NAMESPACE__ . '\\sanitize_value',
 				'type' => 'string',
@@ -57,7 +57,7 @@ function render() {
 	$flags  = get_all_site_flags();
 	$values = call_user_func_array( 'array_merge', array_map( function ( $flag ) {
 		/* @var \HumanMade\Flags\Flag $flag */
-		return [ $flag->id => get_option( $flag->get_meta_key(), true, '' ) === 'active' ];
+		return [ $flag->id => get_option( $flag->get_storage_key(), true, '' ) === 'active' ];
 	}, $flags ) );
 	?>
 	<table class="form-table">
@@ -67,7 +67,7 @@ function render() {
 					<label for="wp-flags-<?php echo esc_attr( $flag->id ); ?>">
 						<input
 								type="checkbox"
-								name="<?php echo esc_attr( $flag->get_meta_key() ); ?>"
+								name="<?php echo esc_attr( $flag->get_storage_key() ); ?>"
 								id="wp-flags-<?php echo esc_attr( $flag->id ); ?>"
 								value="1"
 							<?php checked( true, $values[ $flag->id ] ?? false ); ?>

@@ -40,7 +40,7 @@ function handle( Flag $flag ) {
 	}
 
 	// Get user preference, if any, to set current status of the flag.
-	$value = get_user_meta( get_current_user_id(), $flag->get_meta_key(), true );
+	$value = get_user_meta( get_current_user_id(), $flag->get_storage_key(), true );
 	if ( $value ) {
 		$flag->set( 'active', $value === 'active' );
 	}
@@ -58,5 +58,5 @@ function handle( Flag $flag ) {
  * @return bool|int
  */
 function save( bool $value, Flag $flag ) {
-	return update_user_meta( get_current_user_id(), $flag->get_meta_key(), $value ? 'active' : 'inactive' );
+	return update_user_meta( get_current_user_id(), $flag->get_storage_key(), $value ? 'active' : 'inactive' );
 }

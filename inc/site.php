@@ -40,7 +40,7 @@ function handle( Flag $flag ) {
 	}
 
 	// Get site preference, if any, to set current status of the flag.
-	$value = get_option( $flag->get_meta_key(), true, '' );
+	$value = get_option( $flag->get_storage_key(), true, '' );
 	if ( $value ) {
 		$flag->set( 'active', $value === 'active' );
 	}
@@ -58,5 +58,5 @@ function handle( Flag $flag ) {
  * @return bool|int
  */
 function save( bool $value, Flag $flag ) {
-	return update_option( $flag->get_meta_key(), $value );
+	return update_option( $flag->get_storage_key(), $value );
 }
