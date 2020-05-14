@@ -58,5 +58,5 @@ function handle( Flag $flag ) {
  * @return bool|int
  */
 function save( bool $value, Flag $flag ) {
-	return update_option( $flag->get_meta_key(), $value ? 'active' : 'inactive' );
+	return update_option( $flag->get_meta_key(), $value );
 }
