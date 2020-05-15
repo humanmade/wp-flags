@@ -86,11 +86,11 @@ function render() {
 /**
  * Convert values from on/off to `active`/`inactive`.
  *
- * @param string $value Value to check against.
+ * @param string $value Value to check against, expected to be boolean or "active"|"inactive".
  * @return string Value to save.
  */
 function sanitize_value( $value ) : string {
-	return $value
+	return ( $value && $value !== 'inactive' )
 		? 'active'
 		: 'inactive';
 }
