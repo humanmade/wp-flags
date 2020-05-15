@@ -88,7 +88,7 @@ function get_toggle_url( Flag $flag ) : string {
 			'flag'     => $flag->id,
 			'status'   => (int) ! $flag->active,
 			'nonce'    => wp_create_nonce( 'wp_flags' ),
-			'redirect' => $_SERVER['REQUEST_URI'],
+			'redirect' => rawurlencode( $_SERVER['REQUEST_URI'] ),
 		],
 		admin_url( 'admin-ajax.php' )
 	);
