@@ -34,7 +34,7 @@ function render( \WP_User $user ) {
 	);
 	$values = call_user_func_array( 'array_merge', array_map( function ( $flag ) use ( $user ) {
 		/* @var \HumanMade\Flags\Flag $flag */
-		return [ $flag->id => get_user_meta( $user->ID, $flag->get_meta_key(), true ) === 'active' ];
+		return [ $flag->id => get_user_meta( $user->ID, $flag->get_storage_key(), true ) === 'active' ];
 	}, $flags ) );
 	?>
 	<table class="form-table">
@@ -84,7 +84,7 @@ function save( int $user_id ) {
 	$values = filter_input( INPUT_POST, 'wp-flags', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 	foreach ( $flags as $flag ) {
 		$value = isset( $values[ $flag->id ] ) ? 'active' : 'inactive';
-		update_user_meta( $user_id, $flag->get_meta_key(), $value );
+		update_user_meta( $user_id, $flag->get_storage_key(), $value );
 	}
 
 	return true;
