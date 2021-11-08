@@ -55,10 +55,10 @@ function register_settings() {
  */
 function render() {
 	$flags  = get_all_site_flags();
-	$values = call_user_func_array( 'array_merge', array_map( function ( $flag ) {
+	$values = array_values( call_user_func_array( 'array_merge', array_map( function ( $flag ) {
 		/* @var \HumanMade\Flags\Flag $flag */
 		return [ $flag->id => get_option( $flag->get_storage_key(), true, '' ) === 'active' ];
-	}, $flags ) );
+	}, $flags ) ) );
 	?>
 	<table class="form-table">
 		<tr>
