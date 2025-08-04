@@ -57,12 +57,20 @@ function enqueue_styles() {
 function render() {
 	/* @var $wp_admin_bar \WP_Admin_Bar Admin bar class */
 	global $wp_admin_bar;
+
+	$available_flags = wp_list_filter( Flags::get_all(), [ 'available' => true ] );
+	$active_flags = wp_list_filter( $available_flags, [ 'active' => true ] );
+	$flag_count = ! empty( $active_flags ) ? '<span class="flag-count">' . count( $active_flags ) . '</span>' : '';
+
 	$wp_admin_bar->add_menu( [
 		'id'    => 'flags',
-		'title' => '<span class="ab-icon"></span>' . esc_html__( 'Flags', 'wp-flags' ),
+		'title' => '<span class="ab-icon"></span>' . esc_html__( 'Flags', 'wp-flags' ) . $flag_count,
+		'meta'   => [
+			'class' => $flag_count > 0 ? 'has-active-flags' : 'no-active-flags',
+		],
 	] );
 
-	array_map( __NAMESPACE__ . '\add_flag_node', wp_list_filter( Flags::get_all(), [ 'available' => true ] ) );
+	array_map( __NAMESPACE__ . '\add_flag_node', $available_flags );
 }
 
 /**
