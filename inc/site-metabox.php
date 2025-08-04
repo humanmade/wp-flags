@@ -55,8 +55,8 @@ function register_settings() {
  */
 function render() {
 	$flags  = get_all_site_flags();
-	$values = array();
-	foreach( $flags as $flag ) {
+	$values = [];
+	foreach ( $flags as $flag ) {
 		/* @var \HumanMade\Flags\Flag $flag */
 		$values[ $flag->id ] = get_option( $flag->get_storage_key(), true, '' ) === 'active';
 	}
