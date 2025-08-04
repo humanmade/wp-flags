@@ -47,7 +47,22 @@ function enqueue_styles() {
 	#wp-admin-bar-flags .ab-submenu .optin-1.active-1 .ab-item { color: lightgreen }
 	#wp-admin-bar-flags .ab-submenu .optin-1.active-0 .ab-item {}
 	#wp-admin-bar-flags .ab-submenu .optin-0.active-1 .ab-item { color: lightgreen }
-	#wp-admin-bar-flags .ab-submenu .optin-0.active-0 .ab-item { }";
+	#wp-admin-bar-flags .ab-submenu .optin-0.active-0 .ab-item { }
+	#wp-admin-bar-flags .flag-count {
+		display: inline-block;
+		vertical-align: text-bottom;
+		box-sizing: border-box;
+		margin: 1px 0 -1px 0.5em;
+		padding: 0 5px;
+		min-width: 18px;
+		height: 18px;
+		border-radius: 9px;
+		background-color: lightgreen;
+		color: black;
+		font-size: 11px;
+		line-height: 1.6;
+		text-align: center;
+	}";
 	wp_add_inline_style( 'admin-bar', $css );
 }
 
