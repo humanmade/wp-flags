@@ -32,6 +32,9 @@ function bootstrap() : void {
  */
 function enqueue_styles() {
 	$css = "
+	#wp-admin-bar-flags .ab-item {
+		cursor: pointer;
+	}
 	#wp-admin-bar-flags .ab-icon:before {
 		content: \"\\f227\";
 	}
@@ -44,6 +47,8 @@ function enqueue_styles() {
 		padding-left: 0.4em;
 		padding-bottom: 0.2em;
 	}
+	#wp-admin-bar-flags.has-active-flags > .ab-item,
+	#wp-admin-bar-flags.has-active-flags > .ab-item > .ab-icon::before { color: lightgreen }
 	#wp-admin-bar-flags .ab-submenu .optin-1.active-1 .ab-item { color: lightgreen }
 	#wp-admin-bar-flags .ab-submenu .optin-1.active-0 .ab-item {}
 	#wp-admin-bar-flags .ab-submenu .optin-0.active-1 .ab-item { color: lightgreen }
