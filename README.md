@@ -9,10 +9,10 @@
 	</tr>
 	<tr>
 		<td>
-			A <strong><a href="https://hmn.md/">Human Made</a></strong> project. Maintained by @shadyvb.
+			A <strong><a href="https://hmn.md/">Human Made</a></strong> project.
 		</td>
 		<td align="center">
-			<img src="https://hmn.md/content/themes/hmnmd/assets/images/hm-logo.svg" width="100" />
+            <img src="https://humanmade.com/uploads/2025/01/HM-red-square.svg" width="100" />
 		</td>
 	</tr>
 </table>
@@ -74,7 +74,7 @@ add_action( 'init', function() {
 Scope of Setting a Flag
 ==========
 
-A flag can be set at either the `user` or `site` scope, which determines how a flag is controlled. A `user`-scoped flag can be turned on or off by each user for that user only on a site, whereas a `site`-scoped flag is turned on or off for every user and is controlled in the site settings. 
+A flag can be set at either the `user` or `site` scope, which determines how a flag is controlled. A `user`-scoped flag can be turned on or off by each user for that user only on a site, whereas a `site`-scoped flag is turned on or off for every user and is controlled in the site settings.
 
 Credits
 =======
