@@ -1,0 +1,30 @@
+name: Linting
+
+on: workflow_call
+
+permissions:
+  contents: read
+
+jobs:
+  php:
+    name: PHP
+    runs-on: ubuntu-24.04
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.2'
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+      - name: Install dependencies
+        run: composer install --no-progress --no-interaction --no-ansi
+      - name: Lint code
+        uses: wearerequired/lint-action@548d8a7c4b04d3553d32ed5b6e91eb171e10e7bb #v2.3.0
+        with:
+          continue_on_error: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          php_codesniffer: true
