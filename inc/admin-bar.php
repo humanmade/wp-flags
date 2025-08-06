@@ -30,7 +30,7 @@ function bootstrap() : void {
 /**
  * Admin bar entry icon
  */
-function enqueue_styles() {
+function enqueue_styles() : void {
 	$css = "
 	#wp-admin-bar-flags .ab-item {
 		cursor: pointer;
@@ -74,7 +74,7 @@ function enqueue_styles() {
 /**
  * Render admin bar entries
  */
-function render() {
+function render() : void {
 	/* @var $wp_admin_bar \WP_Admin_Bar Admin bar class */
 	global $wp_admin_bar;
 

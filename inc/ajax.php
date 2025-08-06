@@ -13,7 +13,7 @@ use HumanMade\Flags\Flags;
 /**
  * Bootstrap the feature
  */
-function bootstrap() {
+function bootstrap() : void {
 	add_action( 'wp_ajax_wp_flag_ajax_trigger', __NAMESPACE__ . '\handle_endpoint' );
 	add_action( 'all_admin_notices', __NAMESPACE__ . '\admin_notice' );
 	add_filter( 'removable_query_args', __NAMESPACE__ . '\removable_query_args' );
@@ -22,7 +22,7 @@ function bootstrap() {
 /**
  * Handle the AJAX endpoint
  */
-function handle_endpoint() {
+function handle_endpoint() : void {
 	$redirect = filter_input( INPUT_GET, 'redirect' );
 
 	try {
@@ -52,7 +52,7 @@ function handle_endpoint() {
  *
  * @throws \Exception Notice that a flag was toggled and should not have been.
  */
-function handle_change() {
+function handle_change() : void {
 	if ( ! wp_verify_nonce( filter_input( INPUT_GET, 'nonce' ), 'wp_flags' ) ) {
 		throw new \Exception( __( 'Invalid security nonce.', 'wp-flags' ) );
 	}
@@ -97,7 +97,7 @@ function get_toggle_url( Flag $flag ) : string {
 /**
  * Show the AJAX request error as an admin notice, if is_admin()
  */
-function admin_notice() {
+function admin_notice() : void {
 	$error = filter_input( INPUT_GET, 'wp_flags_error' );
 
 	if ( empty( $error ) ) {

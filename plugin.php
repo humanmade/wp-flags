@@ -1,6 +1,6 @@
 <?php
 /**
- * Feature flag management plugin for WordPress
+ * Feature flag management plugin for WordPress.
  *
  * @package   wp-flags
  * @link      https://github.com/humanmade/wp-flags
@@ -9,7 +9,7 @@
  *
  * Plugin Name:  Flags
  * Description:  Feature flag management for WordPress
- * Version:      0.0.4
+ * Version:      0.1
  * Plugin URI:   https://github.com/humanmade/wp-flags
  * Author:       Human Made
  * Author URI:   https://github.com/humanmade/wp-flags/graphs/contributors
@@ -26,6 +26,7 @@ require_once __DIR__ . '/inc/class-flags.php';
 
 require_once __DIR__ . '/inc/admin-bar.php';
 require_once __DIR__ . '/inc/ajax.php';
+require_once __DIR__ . '/inc/cookie.php';
 require_once __DIR__ . '/inc/user.php';
 require_once __DIR__ . '/inc/user-metabox.php';
 require_once __DIR__ . '/inc/site.php';
