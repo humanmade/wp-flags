@@ -10,9 +10,9 @@
             "email": "shady@sharaf.me"
         },
         {
-			"name": "Human Made",
-			"email": "hello@humanmade.com"
-		}
+            "name": "Human Made",
+            "email": "hello@humanmade.com"
+        }
     ],
     "support": {
         "issues": "https://github.com/humanmade/wp-flags/issues",
@@ -23,14 +23,14 @@
         "composer/installers": "^1.0 || ^2.0"
     },
     "require-dev": {
-		"humanmade/coding-standards": "^1.2"
+        "humanmade/coding-standards": "^1.2"
     },
     "scripts": {
         "lint": "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=phpcs.ruleset.xml ./",
         "lint:fix": "vendor/squizlabs/php_codesniffer/bin/phpcbf --standard=phpcs.ruleset.xml -q -s"
     },
-	"config": {
-		"allow-plugins": {
+    "config": {
+        "allow-plugins": {
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
