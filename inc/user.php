@@ -13,14 +13,14 @@ use HumanMade\Flags\Flags;
 /**
  * Bootstrap the feature
  */
-function bootstrap() {
+function bootstrap() : void {
 	add_action( 'init', __NAMESPACE__ . '\hook', 2 );
 }
 
 /**
  * Setup all after we know who's logged in
  */
-function hook() {
+function hook() : void {
 	// Go through all registered.
 	array_map( __NAMESPACE__ . '\handle', Flags::get_all() );
 
@@ -33,7 +33,7 @@ function hook() {
  *
  * @param \HumanMade\Flags\Flag $flag Flag to evaluate.
  */
-function handle( Flag $flag ) {
+function handle( Flag $flag ) : void {
 	// Check Flag scope.
 	if ( $flag->scope !== 'user' ) {
 		return;

@@ -11,6 +11,7 @@ namespace HumanMade\Flags;
  * Bootstrap the plugin
  */
 function bootstrap() : void {
+	Cookie\bootstrap();
 	User\bootstrap();
 	UserMetabox\bootstrap();
 	Site\bootstrap();
