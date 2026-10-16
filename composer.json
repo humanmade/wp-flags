@@ -23,7 +23,7 @@
         "composer/installers": "^1.0 || ^2.0"
     },
     "require-dev": {
-        "humanmade/coding-standards": "^1.2"
+        "humanmade/coding-standards": "^2.5"
     },
     "scripts": {
         "lint": "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=phpcs.ruleset.xml ./",

@@ -90,7 +90,7 @@ function render() {
  * @param string $value Value to check against, expected to be boolean or "active"|"inactive".
  * @return string Value to save.
  */
-function sanitize_value( $value ) : string {
+function sanitize_value( $value ): string {
 	return ( $value && $value !== 'inactive' )
 		? 'active'
 		: 'inactive';
@@ -101,7 +101,7 @@ function sanitize_value( $value ) : string {
  *
  * @return array
  */
-function get_all_site_flags() : array {
+function get_all_site_flags(): array {
 	return wp_list_filter(
 		Flags::get_all(),
 		[

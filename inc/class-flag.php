@@ -100,7 +100,7 @@ class Flag {
 	 *
 	 * @return \HumanMade\Flags\Flag
 	 */
-	public function set( string $key, $value ) : Flag {
+	public function set( string $key, $value ): Flag {
 		if ( property_exists( __CLASS__, $key ) ) {
 			$this->{$key} = $value;
 		} else {
@@ -122,7 +122,7 @@ class Flag {
 	 *
 	 * @return \HumanMade\Flags\Flag
 	 */
-	public function on( string $property, callable $callback, int $priority = 10 ) : Flag {
+	public function on( string $property, callable $callback, int $priority = 10 ): Flag {
 		add_action( 'wp_flag_' . $this->id . '_change_' . $property, $callback, $priority, 2 );
 
 		return $this;
@@ -131,14 +131,14 @@ class Flag {
 	/**
 	 * Get the underlying storage object (meta or option) key used for our flag.
 	 */
-	public function get_storage_key() : string {
+	public function get_storage_key(): string {
 		return sprintf( '_wp_flag_%s', $this->id );
 	}
 
 	/**
 	 * Evaluate all callable arguments early on the `init` action
 	 */
-	public function evaluate() : void {
+	public function evaluate(): void {
 		foreach ( get_object_vars( $this ) as $key => $value ) {
 			if ( is_callable( $value ) ) {
 				$this->{$key} = call_user_func( $value, $this );

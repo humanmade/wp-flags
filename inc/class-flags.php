@@ -38,7 +38,7 @@ class Flags {
 	 *
 	 * @return \HumanMade\Flags\Flag
 	 */
-	static function add( string $id, string $title, array $options ) : Flag {
+	public static function add( string $id, string $title, array $options ): Flag {
 		self::$flags[ $id ] = new Flag( $id, $title, $options );
 
 		do_action( 'wp_flag_added', self::$flags[ $id ] );
@@ -54,7 +54,7 @@ class Flags {
 	 * @return \HumanMade\Flags\Flag
 	 * @throws \Exception Notice that a flag is unregistered.
 	 */
-	static function get( string $id ) : Flag {
+	public static function get( string $id ): Flag {
 		if ( ! isset( self::$flags[ $id ] ) ) {
 			throw new \Exception( __( 'Unregistered flag', 'wp-flags' ) );
 		}
@@ -67,8 +67,7 @@ class Flags {
 	 *
 	 * @return array
 	 */
-	static function get_all() : array {
+	public static function get_all(): array {
 		return self::$flags;
 	}
-
 }

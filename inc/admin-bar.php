@@ -7,15 +7,15 @@
 
 namespace HumanMade\Flags\AdminBar;
 
-use function HumanMade\Flags\Ajax\get_toggle_url;
+use HumanMade\Flags\Ajax;
 use HumanMade\Flags\Flag;
 use HumanMade\Flags\Flags;
 
 /**
  * Register actions and filters
  */
-function bootstrap() : void {
-	add_action( 'admin_bar_init', function() {
+function bootstrap(): void {
+	add_action( 'admin_bar_init', function () {
 		// Only display the admin bar entry if at least one Flag is available.
 		if ( empty( wp_list_filter( Flags::get_all(), [ 'available' => true ] ) ) ) {
 			return;
@@ -101,7 +101,7 @@ function render() {
  * @return bool
  */
 function add_flag_node( Flag $flag ) {
-	$href      = $flag->optin ? ( $flag->href ?? get_toggle_url( $flag ) ) : null;
+	$href      = $flag->optin ? ( $flag->href ?? Ajax\get_toggle_url( $flag ) ) : null;
 	$title     = $flag->title;
 	$icon      = $flag->meta['icon'] ?? 'flag';
 	$pre_title = sprintf( '<span class="dashicons dashicons-%s"></span>', sanitize_html_class( $icon ) );
