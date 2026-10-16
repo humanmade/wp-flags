@@ -12,14 +12,14 @@ use HumanMade\Flags\Flags;
 /**
  * Bootstrap the feature
  */
-function bootstrap() : void {
+function bootstrap() {
 	add_action( 'admin_init', __NAMESPACE__ . '\\register_settings' );
 }
 
 /**
  * Register our fieldgroup and setting with WordPress.
  */
-function register_settings() : void {
+function register_settings() {
 	// Add a new setting group for site-wide flags in General Options.
 	add_settings_section(
 		'wp_flags',
@@ -53,7 +53,7 @@ function register_settings() : void {
 /**
  * Render site metabox.
  */
-function render() : void {
+function render() {
 	$flags  = get_all_site_flags();
 	$values = [];
 	foreach ( $flags as $flag ) {

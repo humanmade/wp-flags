@@ -1,6 +1,6 @@
 <?php
 /**
- * Feature flag management plugin for WordPress.
+ * Feature flag management plugin for WordPress
  *
  * @package   wp-flags
  * @link      https://github.com/humanmade/wp-flags

@@ -12,7 +12,7 @@ use HumanMade\Flags\Flags;
 /**
  * Bootstrap the feature
  */
-function bootstrap() : void {
+function bootstrap() {
 	add_action( 'show_user_profile', __NAMESPACE__ . '\render' );
 	add_action( 'edit_user_profile', __NAMESPACE__ . '\render' );
 	add_action( 'personal_options_update', __NAMESPACE__ . '\save' );
@@ -24,7 +24,7 @@ function bootstrap() : void {
  *
  * @param \WP_User $user User whose profile is being edited.
  */
-function render( \WP_User $user ) : void {
+function render( \WP_User $user ) {
 	$flags = wp_list_filter(
 		Flags::get_all(),
 		[
