@@ -13,7 +13,7 @@ use HumanMade\Flags\Flags;
 /**
  * Bootstrap the feature
  */
-function bootstrap() : void {
+function bootstrap(): void {
 	// Go through all registered.
 	array_map( __NAMESPACE__ . '\\handle', Flags::get_all() );
 
@@ -26,7 +26,7 @@ function bootstrap() : void {
  *
  * @param \HumanMade\Flags\Flag $flag Flag to evaluate.
  */
-function handle( Flag $flag ) : void {
+function handle( Flag $flag ): void {
 	// Check Flag scope.
 	if ( $flag->scope !== 'cookie' ) {
 		return;
