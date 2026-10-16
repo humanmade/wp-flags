@@ -50,7 +50,7 @@ class Flag {
 	public $active = false;
 
 	/**
-	 * Set the flag scope sitewide or on user level (`user`|`site`)
+	 * Set the flag scope sitewide, on user level or in a cookie (`user`|`site`|`cookie`)
 	 *
 	 * @var string
 	 */
@@ -70,7 +70,7 @@ class Flag {
 	 * @param string $title   Proper display name for the flag.
 	 * @param array  $options Options available to the flag.
 	 *     @type callback $available Is the flag exposed to users?
-	 *     @type string   $scope     At what level the flag can be set. One of `user` or `site`.
+	 *     @type string   $scope     At what level the flag can be set. One of `user`, `site` or `cookie`.
 	 *     @type bool     $active    Default flag status
 	 *     @type bool     $optin     Is the flag controllable by users?
 	 *     @type string   $icon      Custom icon? (dashicon-compatible)
