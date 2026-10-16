@@ -29,9 +29,13 @@ jobs:
         run: composer validate --no-check-all --no-check-publish
       - name: Install dependencies
         run: composer install --no-progress --no-interaction --no-ansi
+      # lint-action runs a bare `phpcs`, so it must be on PATH.
+      - name: Add Composer binaries to PATH
+        run: echo "$GITHUB_WORKSPACE/vendor/bin" >> "$GITHUB_PATH"
       - name: Lint code
         uses: wearerequired/lint-action@124229c6e2974984ba137c67a499ba28bfc33e33 #v3.0.2
         with:
           continue_on_error: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
           php_codesniffer: true
+          php_codesniffer_args: --standard=phpcs.ruleset.xml
