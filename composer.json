@@ -19,7 +19,7 @@
         "source": "https://github.com/humanmade/wp-flags"
     },
     "require": {
-        "php": ">=7.2",
+        "php": ">=8.2",
         "composer/installers": "^1.0 || ^2.0"
     },
     "require-dev": {
@@ -33,6 +33,9 @@
         "allow-plugins": {
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "php": "8.2"
         }
     }
 }
