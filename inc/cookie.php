@@ -44,14 +44,31 @@ function handle( Flag $flag ) : void {
 /**
  * Toggle the cookie flag status
  *
+ * The cookie uses the site-wide path so front-end requests send it, even when
+ * it is set from `admin-ajax.php`.
+ *
  * @param bool                  $value Enable or disable the flag.
  * @param \HumanMade\Flags\Flag $flag  Flag being saved.
  *
- * @return bool|int
+ * @return bool Whether the cookie was set.
  */
 function save( bool $value, Flag $flag ) {
+	$key   = $flag->get_storage_key();
+	$state = $value ? 'active' : 'inactive';
+
+	// The browser only sends the cookie from the next request on.
+	$_COOKIE[ $key ] = $state;
+
 	return setcookie(
-		$flag->get_storage_key(),
-		$value ? 'active' : 'inactive'
+		$key,
+		$state,
+		[
+			'expires'  => time() + YEAR_IN_SECONDS,
+			'path'     => COOKIEPATH,
+			'domain'   => COOKIE_DOMAIN,
+			'secure'   => is_ssl(),
+			'httponly' => true,
+			'samesite' => 'Lax',
+		]
 	);
 }
