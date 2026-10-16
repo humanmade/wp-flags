@@ -18,20 +18,20 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
         with:
           fetch-depth: 0 # Required to make it possible to compare with PR base branch
 
       - name: Generate composer diff
         id: composer_diff # To reference the output in comment
-        uses: IonBazan/composer-diff-action@3140157575f6a67799cc80248ae35f5fb303ab15 #v1.2.0
+        uses: IonBazan/composer-diff-action@e2022e8718d05cc6e4e5990a06fc928c75837f76 #v2.0.0
         with:
           format: mdlist
           with-links: true
           with-platform: true
 
 
-      - uses: marocchino/sticky-pull-request-comment@d2ad0de260ae8b0235ce059e63f2949ba9e05943 #v2.9.3
+      - uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 #v3.0.5
         # An empty diff result will break this action.
         if: ${{ steps.composer_diff.outputs.composer_diff_exit_code != 0 }}
         with:
