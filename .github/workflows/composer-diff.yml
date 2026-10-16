@@ -31,9 +31,10 @@ jobs:
           with-platform: true
 
 
+      # Fork PRs get a read-only token, so the comment steps would fail there.
       - uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 #v3.0.5
         # An empty diff result will break this action.
-        if: ${{ steps.composer_diff.outputs.composer_diff_exit_code != 0 }}
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository && steps.composer_diff.outputs.composer_diff_exit_code != 0 }}
         with:
           header: composer-diff # Creates a collapsed comment with the report
           message: |
@@ -43,3 +44,10 @@ jobs:
             ${{ steps.composer_diff.outputs.composer_diff }}
 
             </details>
+
+      # Remove the report once a later push leaves no package changes.
+      - uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 #v3.0.5
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository && steps.composer_diff.outputs.composer_diff_exit_code == 0 }}
+        with:
+          header: composer-diff
+          delete: true

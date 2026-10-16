@@ -33,9 +33,14 @@ jobs:
       - name: Add Composer binaries to PATH
         run: echo "$GITHUB_WORKSPACE/vendor/bin" >> "$GITHUB_PATH"
       - name: Lint code
+        # Fork PRs get a read-only token, so lint-action can't create its check run there.
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
         uses: wearerequired/lint-action@124229c6e2974984ba137c67a499ba28bfc33e33 #v3.0.2
         with:
           continue_on_error: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
           php_codesniffer: true
           php_codesniffer_args: --standard=phpcs.ruleset.xml
+      - name: Lint code (fork)
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository }}
+        run: composer lint
