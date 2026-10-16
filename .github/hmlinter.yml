@@ -1,0 +1,9 @@
+# The Linting workflow runs phpcs instead of hm-linter.
+phpcs:
+    enabled: false
+
+eslint:
+    enabled: false
+
+stylelint:
+    enabled: false
