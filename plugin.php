@@ -9,14 +9,14 @@
  *
  * Plugin Name:  Flags
  * Description:  Feature flag management for WordPress
- * Version:      0.0.4
+ * Version:      0.1
  * Plugin URI:   https://github.com/humanmade/wp-flags
  * Author:       Human Made
  * Author URI:   https://github.com/humanmade/wp-flags/graphs/contributors
  * Text Domain:  wp-flags
  * Domain Path:  /languages/
  * Network:      true
- * Requires PHP: 7.2
+ * Requires PHP: 8.2
  */
 
 namespace HumanMade\Flags;

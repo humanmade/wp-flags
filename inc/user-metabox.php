@@ -32,10 +32,10 @@ function render( \WP_User $user ) {
 			'scope' => 'user',
 		]
 	);
-	$values = call_user_func_array( 'array_merge', array_map( function ( $flag ) use ( $user ) {
-		/* @var \HumanMade\Flags\Flag $flag */
-		return [ $flag->id => get_user_meta( $user->ID, $flag->get_storage_key(), true ) === 'active' ];
-	}, $flags ) );
+	$values = [];
+	foreach ( $flags as $flag ) {
+		$values[ $flag->id ] = get_user_meta( $user->ID, $flag->get_storage_key(), true ) === 'active';
+	}
 	?>
 	<table class="form-table">
 		<tr>

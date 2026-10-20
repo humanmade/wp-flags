@@ -81,7 +81,7 @@ function handle_change() {
  *
  * @return string
  */
-function get_toggle_url( Flag $flag ) : string {
+function get_toggle_url( Flag $flag ): string {
 	return add_query_arg(
 		[
 			'action'   => 'wp_flag_ajax_trigger',
