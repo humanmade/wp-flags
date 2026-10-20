@@ -58,7 +58,7 @@ function render() {
 	$values = [];
 	foreach ( $flags as $flag ) {
 		/* @var \HumanMade\Flags\Flag $flag */
-		$values[ $flag->id ] = get_option( $flag->get_storage_key(), true, '' ) === 'active';
+		$values[ $flag->id ] = (bool) $flag->active;
 	}
 	?>
 	<table class="form-table">
