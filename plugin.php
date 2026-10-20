@@ -16,7 +16,7 @@
  * Text Domain:  wp-flags
  * Domain Path:  /languages/
  * Network:      true
- * Requires PHP: 7.2
+ * Requires PHP: 8.2
  */
 
 namespace HumanMade\Flags;

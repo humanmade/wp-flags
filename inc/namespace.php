@@ -10,7 +10,7 @@ namespace HumanMade\Flags;
 /**
  * Bootstrap the plugin
  */
-function bootstrap() : void {
+function bootstrap(): void {
 	User\bootstrap();
 	UserMetabox\bootstrap();
 	Site\bootstrap();

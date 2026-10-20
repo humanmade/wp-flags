@@ -19,11 +19,11 @@
         "source": "https://github.com/humanmade/wp-flags"
     },
     "require": {
-        "php": ">=7.2",
+        "php": ">=8.2",
         "composer/installers": "^1.0 || ^2.0"
     },
     "require-dev": {
-        "humanmade/coding-standards": "^1.2"
+        "humanmade/coding-standards": "^2.5"
     },
     "scripts": {
         "lint": "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=phpcs.ruleset.xml ./",
@@ -33,6 +33,9 @@
         "allow-plugins": {
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "php": "8.2"
         }
     }
 }
