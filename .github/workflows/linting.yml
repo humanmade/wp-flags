@@ -1,0 +1,46 @@
+name: Linting
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  php:
+    name: PHP
+    runs-on: ubuntu-24.04
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 #2.40.0
+        with:
+          php-version: '8.2'
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
+      - name: Validate Composer config
+        run: composer validate --no-check-all --no-check-publish
+      - name: Install dependencies
+        run: composer install --no-progress --no-interaction --no-ansi
+      # lint-action runs a bare `phpcs`, so it must be on PATH.
+      - name: Add Composer binaries to PATH
+        run: echo "$GITHUB_WORKSPACE/vendor/bin" >> "$GITHUB_PATH"
+      - name: Lint code
+        # Fork PRs get a read-only token, so lint-action can't create its check run there.
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+        uses: wearerequired/lint-action@124229c6e2974984ba137c67a499ba28bfc33e33 #v3.0.2
+        with:
+          continue_on_error: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          php_codesniffer: true
+          php_codesniffer_args: --standard=phpcs.ruleset.xml
+      - name: Lint code (fork)
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository }}
+        run: composer lint
